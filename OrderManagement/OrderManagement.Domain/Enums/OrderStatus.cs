@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OrderManagement.Domain.Enums
 {
-    public enum Status
+    public enum OrderStatus
     {
         Compelted,
         Pending,

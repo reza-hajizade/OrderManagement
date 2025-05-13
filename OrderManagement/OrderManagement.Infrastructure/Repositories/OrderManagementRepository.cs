@@ -15,7 +15,7 @@ namespace OrderManagement.Infrastructure.Repositories
         private readonly OrderManagementDbContext _context;
         public OrderManagementRepository(OrderManagementDbContext context)
         {
-            _context = context;         
+            _context = context;
         }
 
         public async Task AddAsync(Order order)
@@ -23,11 +23,18 @@ namespace OrderManagement.Infrastructure.Repositories
             await _context.Orders.AddAsync(order);
         }
 
-        public async Task<Order> GEtOrderById(int id)
+        
+        public async Task<Order> GetOrderById(int id)
         {
-            var result=await _context.Orders.FirstOrDefaultAsync(p=>p.Id == id);
-            return result;
+            var Result= await _context.Orders.FirstOrDefaultAsync(p => p.Id == id);
+            return Result;
 
+        }
+
+        public async Task<Order> GetOrderByNameAsync(string name)
+        {
+            var Result=await _context.Orders.FirstOrDefaultAsync(p=>p.Name == name);
+            return Result;
         }
     }
 }

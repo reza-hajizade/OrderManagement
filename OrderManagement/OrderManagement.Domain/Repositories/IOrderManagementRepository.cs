@@ -10,6 +10,7 @@ namespace OrderManagement.Domain.Repositories
     public interface IOrderManagementRepository
     {
         Task AddAsync(Order order);
-        Task<Order> GEtOrderById(int id);
+        Task<Order> GetOrderById(int id);
+        Task<Order> GetOrderByNameAsync(string name);
     }
 }

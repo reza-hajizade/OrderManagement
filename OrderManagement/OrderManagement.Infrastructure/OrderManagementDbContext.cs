@@ -12,5 +12,15 @@ namespace OrderManagement.Infrastructure.EF.Context
       : DbContext(dbContextOptions)
     {
         public DbSet<Order> Orders { get; set; }
+
+
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Order>()
+                .Property(o => o.Status)
+                .HasConversion<string>(); 
+        }
+
     }
 }
