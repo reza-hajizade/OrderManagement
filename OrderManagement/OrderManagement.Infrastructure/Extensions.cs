@@ -11,9 +11,8 @@ namespace OrderManagement.Infrastructure
         public static IServiceCollection AddApplicationServices(this IServiceCollection services, IConfiguration configuration)
         {
 
-            var connection = (configuration.GetConnectionString("SvcDbContext"));
             services.AddDbContext<OrderManagementDbContext>(options =>
-        options.UseNpgsql(connection));
+                    options.UseNpgsql(configuration.GetConnectionString("SvcDbContext")));
 
             return services;
         }

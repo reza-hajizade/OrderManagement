@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using OrderManagement.Domain.Enums;
 
 namespace OrderManagement.Domain.Entities
 {
@@ -13,7 +14,7 @@ namespace OrderManagement.Domain.Entities
         public string Name { get; private set; }
         public DateTime OrderDate { get; private set; }
         public decimal TotalAmount { get; private set; }
-     //   public Status Status { get; private set; }
+        public Status Status { get; private set; }
 
     }
 }
