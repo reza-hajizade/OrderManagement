@@ -27,7 +27,7 @@ namespace OrderManagement.Application.Commands.Handlers
                 throw new OrderAlreadyExistException(command.Name);
             }
 
-            var newOrder = Order.Create(command.Name);  
+            var newOrder = Order.Create(command.Name,command.Quantity);  
 
             await _orderManagementRepository.AddAsync(newOrder);
             await _unitOfWork.SaveChangeAsync();

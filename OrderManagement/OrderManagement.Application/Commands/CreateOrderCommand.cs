@@ -8,6 +8,6 @@ using OrderManagement.Domain.Entities;
 
 namespace OrderManagement.Application.Commands
 {
-    public record CreateOrderCommand(string Name):IRequest;
+    public record CreateOrderCommand(string Name,int Quantity):IRequest;
     
 }
