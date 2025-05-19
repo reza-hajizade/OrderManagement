@@ -17,6 +17,7 @@
   <ItemGroup>
     <ProjectReference Include="..\OrderManagement.Application\OrderManagement.Application.csproj" />
     <ProjectReference Include="..\OrderManagement.Infrastructure\OrderManagement.Infrastructure.csproj" />
+    <ProjectReference Include="..\OrderManagement.Shared.Contracts\OrderManagement.Shared.Contracts.csproj" />
   </ItemGroup>
 
 </Project>

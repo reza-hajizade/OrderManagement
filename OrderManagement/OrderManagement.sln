@@ -15,6 +15,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{C8A2E4
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderManagement.Shared.Abstractions", "OrderManagement.Shared.Abstractions\OrderManagement.Shared.Abstractions.csproj", "{C32EA243-9443-4186-98DF-E11EFF56A027}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderManagement.Shared.Contracts", "OrderManagement.Shared.Contracts\OrderManagement.Shared.Contracts.csproj", "{991B3D4C-FD9E-458D-ADAA-B39307650709}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,11 +43,16 @@ Global
 		{C32EA243-9443-4186-98DF-E11EFF56A027}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C32EA243-9443-4186-98DF-E11EFF56A027}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C32EA243-9443-4186-98DF-E11EFF56A027}.Release|Any CPU.Build.0 = Release|Any CPU
+		{991B3D4C-FD9E-458D-ADAA-B39307650709}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{991B3D4C-FD9E-458D-ADAA-B39307650709}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{991B3D4C-FD9E-458D-ADAA-B39307650709}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{991B3D4C-FD9E-458D-ADAA-B39307650709}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{C32EA243-9443-4186-98DF-E11EFF56A027} = {C8A2E4C5-E188-4665-BE29-AC97AF2F9160}
+		{991B3D4C-FD9E-458D-ADAA-B39307650709} = {C8A2E4C5-E188-4665-BE29-AC97AF2F9160}
 	EndGlobalSection
 EndGlobal

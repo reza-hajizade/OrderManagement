@@ -5,14 +5,20 @@ using OrderManagement.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddMediatR(cfg =>
+{
+    cfg.RegisterServicesFromAssembly(typeof(CreateOrderHandler).Assembly);
+    cfg.RegisterServicesFromAssembly(typeof(ConfirmStatusHandler).Assembly);
+});
+
+
 ConfigurationManager configuration = builder.Configuration;
 
 builder.Services.AddApplicationServices(configuration);
 
 builder.Services.AddControllers();
 
-builder.Services.AddMediatR(cfg =>
-    cfg.RegisterServicesFromAssembly(typeof(CreateOrderHandler).Assembly));
+
 
 builder.Services.AddControllers()
     .AddJsonOptions(options =>
@@ -22,8 +28,6 @@ builder.Services.AddControllers()
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
-
 
 var app = builder.Build();
 

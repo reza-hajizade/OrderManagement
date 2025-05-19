@@ -8,8 +8,8 @@ namespace OrderManagement.Domain.Enums
 {
     public enum OrderStatus
     {
-        Compelted,
+        Confirmed,
         Pending,
-        Cancelled
+        Failed
     }
 }

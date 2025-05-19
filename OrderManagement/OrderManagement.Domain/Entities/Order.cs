@@ -7,7 +7,7 @@ using OrderManagement.Domain.Enums;
 
 namespace OrderManagement.Domain.Entities
 {
-    public class Order
+    public  class Order
     {
         public const string TableName = "Orders";
         public int Id { get; set; }
@@ -28,7 +28,16 @@ namespace OrderManagement.Domain.Entities
             };
         }
 
-    }
+        public  void ConfirmStatus(OrderStatus status)
+        {
+            Status = OrderStatus.Confirmed;
+        }
 
+        public void FailedStatus(OrderStatus status)
+        {
+            Status = OrderStatus.Failed;
+        }
+
+    }
 
 }
