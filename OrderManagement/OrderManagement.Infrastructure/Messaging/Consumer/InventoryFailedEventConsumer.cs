@@ -12,16 +12,16 @@ using OrderManagement.Infrastructure.EF.Context;
 
 namespace OrderManagement.Infrastructure.Messaging.Consumer
 {
-    public class InventoryFailedEventConsumer(OrderManagementDbContext orderManagementDbContext,
+    public class InventoryFailedEventConsumer(WriteDbContext context,
         IMediator mediator) : IConsumer<InventoryFailedEvent>
     {
 
-        private readonly OrderManagementDbContext _orderManagementDbContext=orderManagementDbContext;
+        private readonly WriteDbContext _context = context;
         private readonly IMediator _mediator= mediator;
 
         public async Task Consume(ConsumeContext<InventoryFailedEvent> context)
         {
-            var order = await _orderManagementDbContext.Orders.FirstOrDefaultAsync(p => p.Id == context.Message.Id);
+            var order = await _context.Orders.FirstOrDefaultAsync(p => p.Id == context.Message.Id);
 
             if (order is null)
             {

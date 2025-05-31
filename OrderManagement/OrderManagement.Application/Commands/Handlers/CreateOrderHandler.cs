@@ -11,14 +11,14 @@ namespace OrderManagement.Application.Commands.Handlers
 {
     public class CreateOrderHandler: IRequestHandler<CreateOrderCommand>
     {
-        private readonly IOrderManagementRepository _orderManagementRepository;
+        private IOrderWriteRepository _orderWriteRepository;
         private readonly IOrderCreatedEventPublisher _orderCreatedEventPublisher;
         private readonly IUnitOfWork _unitOfWork;
-        public CreateOrderHandler(IOrderManagementRepository orderManagementRepository,
+        public CreateOrderHandler(IOrderWriteRepository orderWriteRepository,
             IUnitOfWork unitOfWork,
             IOrderCreatedEventPublisher orderCreatedEventPublisher)
         {
-            _orderManagementRepository = orderManagementRepository;
+            _orderWriteRepository = orderWriteRepository;
             _unitOfWork = unitOfWork;
             _orderCreatedEventPublisher = orderCreatedEventPublisher;
         }
@@ -26,15 +26,15 @@ namespace OrderManagement.Application.Commands.Handlers
 
         public async Task Handle(CreateOrderCommand command,CancellationToken  cancellationToken)
         {
-            var existingOrder = await _orderManagementRepository.GetOrderByNameAsync(command.Name);
+            var existingOrder = await _orderWriteRepository.GetOrderByNameAsync(command.Name);
 
             var newOrder = Order.Create(command.Name,command.Quantity);  
 
-            await _orderManagementRepository.AddAsync(newOrder);
+            await _orderWriteRepository.AddAsync(newOrder);
 
 
             await _unitOfWork.SaveChangeAsync();
-
+//solve it
             await _orderCreatedEventPublisher.PublishAsync(new OrderCreatedEvent(newOrder.Id,newOrder.Name,newOrder.Quantity,DateTime.UtcNow));
 
         }

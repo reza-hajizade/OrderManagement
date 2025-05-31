@@ -14,15 +14,15 @@ using MediatR;
 
 namespace OrderManagement.Infrastructure.Messaging.Consumer
 {
-    public class InventoryReservedEventConsumer(OrderManagementDbContext orderManagementDbContext,
+    public class InventoryReservedEventConsumer(WriteDbContext context,
         IMediator mediator) : IConsumer<InventoryReservedEvent>
     {
-        private readonly OrderManagementDbContext _orderManagementDbContext = orderManagementDbContext;
+        private readonly WriteDbContext _context = context;
         private readonly IMediator _mediator=mediator;
 
         public async Task Consume(ConsumeContext<InventoryReservedEvent> context)
         {
-            var order = await _orderManagementDbContext.Orders.FirstOrDefaultAsync(p => p.Id == context.Message.Id);
+            var order = await _context.Orders.FirstOrDefaultAsync(p => p.Id == context.Message.Id);
 
             if(order is null)
             {

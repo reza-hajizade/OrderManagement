@@ -6,11 +6,12 @@ using Microsoft.Extensions.Hosting;
 using OrderManagement.Application.Commands.Handlers;
 using OrderManagement.Application.Interfaces;
 using OrderManagement.Domain.Repositories;
+using OrderManagement.Infrastructure.EF;
 using OrderManagement.Infrastructure.EF.Context;
+using OrderManagement.Infrastructure.EF.Repositories;
 using OrderManagement.Infrastructure.Messaging;
 using OrderManagement.Infrastructure.Messaging.Configuration;
 using OrderManagement.Infrastructure.Messaging.Publishers;
-using OrderManagement.Infrastructure.Repositories;
 using OrderManagement.Infrastructure.UnitOfWork;
 using System.Reflection;
 using System.Text.Json.Serialization;
@@ -23,18 +24,11 @@ namespace OrderManagement.Infrastructure
         public static IServiceCollection AddApplicationServices(this IServiceCollection services, IConfiguration configuration)
         {
 
+            services.AddSQLDB(configuration);
 
-    
+            services.AddScoped<IUnitOfWork, EF.UnitOfWork.UnitOfWork>();
 
-            services.AddDbContext<OrderManagementDbContext>(options =>
-                    options.UseNpgsql(configuration.GetConnectionString("SvcDbContext")));
-
-            services.AddScoped<IUnitOfWork, UnitOfWork.UnitOfWork>();
-
-            services.AddScoped<IOrderManagementRepository, OrderManagementRepository>();
             services.AddScoped<IOrderCreatedEventPublisher, OrderCreatedEventPublisher>();
-
-
 
             services.AddMassTransit(configure =>
             {

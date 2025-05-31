@@ -4,19 +4,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using OrderManagement.Domain.Enums;
+using OrderManagement.Domain.Interface;
 
 namespace OrderManagement.Domain.Entities
 {
     public  class Order
     {
-        public const string TableName = "Orders";
         public int Id { get; set; }
         public string Name { get;private set; }
         public int Quantity {  get;private set; }
         public DateTime OrderDate { get; private set; }
         public OrderStatus Status { get; private set; }
 
-
+        private IOrderState _state;
         public static Order Create(string name,int quantity)
         {
             return new Order
@@ -28,14 +28,24 @@ namespace OrderManagement.Domain.Entities
             };
         }
 
-        public  void ConfirmStatus(OrderStatus status)
+        public void Confirm()
         {
-            Status = OrderStatus.Confirmed;
+            _state?.Confirm(this);
         }
 
-        public void FailedStatus(OrderStatus status)
+        public void Failed()
         {
-            Status = OrderStatus.Failed;
+            _state?.Failed(this);
+        }
+
+        public void SetStatus(OrderStatus status)
+        {
+            Status = status;
+        }
+
+        public void SetState(IOrderState state)
+        {
+            _state = state;
         }
 
     }

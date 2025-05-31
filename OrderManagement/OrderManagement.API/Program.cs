@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
-using Microsoft.Extensions.Configuration;
 using OrderManagement.Application.Commands.Handlers;
+using OrderManagement.Application.Queries.Handler;
 using OrderManagement.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +9,8 @@ builder.Services.AddMediatR(cfg =>
 {
     cfg.RegisterServicesFromAssembly(typeof(CreateOrderHandler).Assembly);
     cfg.RegisterServicesFromAssembly(typeof(ConfirmStatusHandler).Assembly);
+    cfg.RegisterServicesFromAssemblies(typeof(FailedStatusHandler).Assembly);
+    cfg.RegisterServicesFromAssemblies(typeof(GetOrderHandler).Assembly);
 });
 
 

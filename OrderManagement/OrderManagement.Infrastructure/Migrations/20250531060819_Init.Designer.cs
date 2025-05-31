@@ -11,15 +11,16 @@ using OrderManagement.Infrastructure.EF.Context;
 
 namespace OrderManagement.Infrastructure.Migrations
 {
-    [DbContext(typeof(OrderManagementDbContext))]
-    [Migration("20250513132356_add-ConvertEnumToString")]
-    partial class addConvertEnumToString
+    [DbContext(typeof(WriteDbContext))]
+    [Migration("20250531060819_Init")]
+    partial class Init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
+                .HasDefaultSchema("Order")
                 .HasAnnotation("ProductVersion", "8.0.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
@@ -40,16 +41,16 @@ namespace OrderManagement.Infrastructure.Migrations
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<int>("Quantity")
+                        .HasColumnType("integer");
+
                     b.Property<string>("Status")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<decimal>("TotalAmount")
-                        .HasColumnType("numeric");
-
                     b.HasKey("Id");
 
-                    b.ToTable("Orders");
+                    b.ToTable("Orders", "Order");
                 });
 #pragma warning restore 612, 618
         }

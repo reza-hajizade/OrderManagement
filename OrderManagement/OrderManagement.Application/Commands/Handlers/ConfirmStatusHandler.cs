@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using MediatR;
 using OrderManagement.Domain.Entities;
 using OrderManagement.Domain.Enums;
+using OrderManagement.Domain.Interface;
 using OrderManagement.Domain.Repositories;
 using OrderManagement.Infrastructure.UnitOfWork;
 
@@ -13,21 +14,22 @@ namespace OrderManagement.Application.Commands.Handlers
 {
     public class ConfirmStatusHandler : IRequestHandler<ConfirmStatusCommand>
     {
-        private readonly IOrderManagementRepository _orderManagementRepository;
+        private readonly IOrderWriteRepository _orderWriteRepository;
         private readonly IUnitOfWork _unitOfWork;
-        public ConfirmStatusHandler(IOrderManagementRepository orderManagementRepository,
+        public ConfirmStatusHandler(IOrderWriteRepository orderWriteRepository,
             IUnitOfWork unitOfWork)
         {
-            _orderManagementRepository= orderManagementRepository;
+            _orderWriteRepository = orderWriteRepository;
             _unitOfWork= unitOfWork;
         }
 
         public async Task Handle(ConfirmStatusCommand request, CancellationToken cancellationToken)
         {
 
-           var order=await _orderManagementRepository.GetOrderById(request.id);
+           var order=await _orderWriteRepository.GetOrderById(request.id);
 
-            order.ConfirmStatus(order.Status);
+            order.SetState(new PendingStatus());
+            order.Confirm();
            await _unitOfWork.SaveChangeAsync();
         }
     }

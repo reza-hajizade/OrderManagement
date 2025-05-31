@@ -1,27 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MediatR;
+﻿using MediatR;
 using OrderManagement.Application.DTO;
 using OrderManagement.Application.Exceptions;
-using OrderManagement.Domain.Repositories;
+using Microsoft.EntityFrameworkCore;
+using OrderManagement.Application.Repositories;
+
 
 namespace OrderManagement.Application.Queries.Handler
 {
-    public class GetOrderHandler : IRequestHandler<GetOrderQuery, GetOrderDto>
+    public sealed class GetOrderHandler : IRequestHandler<GetOrderQuery, GetOrderDto>
     {
-        private readonly IOrderManagementRepository _orderManagementRepository;
+        private readonly IOrderReadRepository _orderReadRepository;
 
-        public GetOrderHandler(IOrderManagementRepository orderManagementRepository)
+
+        public GetOrderHandler(IOrderReadRepository orderReadRepository)
         {
-            _orderManagementRepository = orderManagementRepository;
+            _orderReadRepository = orderReadRepository;
         }
 
         public async Task<GetOrderDto> Handle(GetOrderQuery request, CancellationToken cancellationToken)
         {
-            var Orders = await _orderManagementRepository.GetOrderById(request.Id);
+            var Orders = await _orderReadRepository.GetOrderById(request.Id);
 
             if (Orders is null)
             {
@@ -30,7 +28,7 @@ namespace OrderManagement.Application.Queries.Handler
 
             return new GetOrderDto(
                  Orders.Name,
-                 Orders.OrderDate,
+                 Orders.Quantity,
                  Orders.Status
             );
 

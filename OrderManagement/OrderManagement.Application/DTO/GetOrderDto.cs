@@ -9,7 +9,7 @@ namespace OrderManagement.Application.DTO
 {
     public record GetOrderDto(
         string Name,
-        DateTime DateTime,
+        int Quantity,
         OrderStatus Status
         );
     
