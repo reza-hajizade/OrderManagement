@@ -33,9 +33,8 @@ namespace OrderManagement.Application.Commands.Handlers
             await _orderWriteRepository.AddAsync(newOrder);
 
 
-            await _unitOfWork.SaveChangeAsync();
-//solve it
             await _orderCreatedEventPublisher.PublishAsync(new OrderCreatedEvent(newOrder.Id,newOrder.Name,newOrder.Quantity,DateTime.UtcNow));
+            await _unitOfWork.SaveChangeAsync();
 
         }
     }

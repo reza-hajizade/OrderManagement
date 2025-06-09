@@ -11,7 +11,7 @@ namespace OrderManagement.Domain.Entities
     public  class Order
     {
       
-        public int Id { get; set; }
+        public Guid Id { get;private set; }= Guid.NewGuid();
         public string Name { get;private set; }
         public int Quantity {  get;private set; }
         public DateTime OrderDate { get; private set; }
@@ -22,6 +22,7 @@ namespace OrderManagement.Domain.Entities
         {
             return new Order
             {
+                
                 Status = OrderStatus.Pending,
                 OrderDate = DateTime.UtcNow,
                 Name = name,

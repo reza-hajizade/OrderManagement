@@ -24,7 +24,7 @@ namespace OrderManagement.Application.Commands.Handlers
         public async Task Handle(FailedStatusCommand request, CancellationToken cancellationToken)
         {
            
-            var order = await _orderWriteRepository.GetOrderById(request.id);
+            var order = await _orderWriteRepository.GetOrderById(request.Id);
             order.SetCurrentState();
             order.Failed();
           

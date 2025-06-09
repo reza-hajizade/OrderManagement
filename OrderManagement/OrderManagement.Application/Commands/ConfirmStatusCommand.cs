@@ -8,6 +8,6 @@ using OrderManagement.Domain.Enums;
 
 namespace OrderManagement.Application.Commands
 {
-    public record ConfirmStatusCommand(int id,OrderStatus OrderStatus):IRequest;
+    public record ConfirmStatusCommand(Guid Id,OrderStatus OrderStatus):IRequest;
     
 }

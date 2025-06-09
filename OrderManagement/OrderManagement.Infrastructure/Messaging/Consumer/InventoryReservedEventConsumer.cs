@@ -24,14 +24,14 @@ namespace OrderManagement.Infrastructure.Messaging.Consumer
         {
             var order = await _context.Orders.FirstOrDefaultAsync(p => p.Id == context.Message.Id);
 
-            if(order is null)
+            if (order is null)
             {
                 Console.WriteLine("order is null");
                 return;
             }
 
-           await _mediator.Send(new ConfirmStatusCommand(order.Id,order.Status));
-           
+            await _mediator.Send(new ConfirmStatusCommand(order.Id, order.Status));
+
         }
     }
 }

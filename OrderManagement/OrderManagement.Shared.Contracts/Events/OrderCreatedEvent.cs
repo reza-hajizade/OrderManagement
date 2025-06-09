@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace OrderManagement.Shared.Contracts.Events
 {
-    public record OrderCreatedEvent(int Id,string Name,int Quantity, DateTime OccurredOn);
-    
+    public record OrderCreatedEvent(Guid Id, string Name, int Quantity, DateTime OccurredOn);
+
 }
+

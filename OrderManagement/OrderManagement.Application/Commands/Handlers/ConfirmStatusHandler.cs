@@ -26,7 +26,7 @@ namespace OrderManagement.Application.Commands.Handlers
         public async Task Handle(ConfirmStatusCommand request, CancellationToken cancellationToken)
         {
 
-           var order=await _orderWriteRepository.GetOrderById(request.id);
+           var order=await _orderWriteRepository.GetOrderById(request.Id);
             order.SetCurrentState();
             order.Confirm();
            await _unitOfWork.SaveChangeAsync();

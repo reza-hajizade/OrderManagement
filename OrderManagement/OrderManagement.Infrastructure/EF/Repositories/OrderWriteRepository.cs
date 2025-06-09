@@ -22,7 +22,7 @@ namespace OrderManagement.Infrastructure.EF.Repositories
            await _writeDbContext.Orders.AddAsync(order);
         }
 
-        public async Task<Order> GetOrderById(int id)
+        public async Task<Order> GetOrderById(Guid id)
         {
             var result= await _writeDbContext.Orders.FirstOrDefaultAsync(p=>p.Id==id);
             return result;
