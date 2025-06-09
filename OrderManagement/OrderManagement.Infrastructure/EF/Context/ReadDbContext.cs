@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using OrderManagement.Infrastructure.EF.Models;
+using OrderManagement.Domain.Entities;
 
 
 namespace OrderManagement.Infrastructure.EF.Context

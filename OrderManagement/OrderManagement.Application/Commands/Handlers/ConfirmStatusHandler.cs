@@ -27,8 +27,7 @@ namespace OrderManagement.Application.Commands.Handlers
         {
 
            var order=await _orderWriteRepository.GetOrderById(request.id);
-
-            order.SetState(new PendingStatus());
+            order.SetCurrentState();
             order.Confirm();
            await _unitOfWork.SaveChangeAsync();
         }

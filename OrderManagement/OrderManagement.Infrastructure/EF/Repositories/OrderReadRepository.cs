@@ -4,7 +4,6 @@ using OrderManagement.Application.Repositories;
 using OrderManagement.Domain.Entities;
 using OrderManagement.Domain.Repositories;
 using OrderManagement.Infrastructure.EF.Context;
-using OrderManagement.Infrastructure.EF.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,14 +19,10 @@ namespace OrderManagement.Infrastructure.EF.Repositories
         {
             _readDbContext = readDbContext;
         }
-        public async Task<GetOrderDto> GetOrderById(int id)
+        public async Task<OrderReadModel> GetOrderById(int id)
         {
-            var result = await _readDbContext.orderReadModels.FirstOrDefaultAsync(p => p.Id == id);
-            return new GetOrderDto(
-               result.Name,
-               result.Quantity,
-               result.Status
-            );
+            return await _readDbContext.orderReadModels.FirstOrDefaultAsync(p => p.Id == id);
+           
         }
     }
 }

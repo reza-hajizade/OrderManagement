@@ -8,16 +8,22 @@ using OrderManagement.Domain.Enums;
 
 namespace OrderManagement.Domain.Interface
 {
-    public  class PendingStatus : IOrderState
+    public  class PendingStatus : OrderState
     {
-        public void Confirm(Order order)
+        public  PendingStatus()
         {
-           order.SetStatus(OrderStatus.Confirmed);
         }
 
-        public void Failed(Order order)
+        public override void Confirm(Order order)
         {
-           order.SetStatus(OrderStatus.Failed);
+            _order.SetStatus(OrderStatus.Confirmed);
         }
+
+        public override void Failed(Order order)
+        {
+            order.SetStatus(OrderStatus.Failed);
+        }
+
+        
     }
 }

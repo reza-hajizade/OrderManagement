@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OrderManagement.Infrastructure.EF.Models
+namespace OrderManagement.Domain.Entities
 {
     public class OrderReadModel
     {
