@@ -17,9 +17,9 @@ namespace OrderManagement.Infrastructure.EF.UnitOfWork
         {
             _context = context;
         }
-        public async Task<int> SaveChangeAsync()
+        public async Task<int> SaveChangeAsync(CancellationToken cancellationToken)
         {
-            return await _context.SaveChangesAsync();
+            return await _context.SaveChangesAsync(cancellationToken);
         }
     }
 }

@@ -21,7 +21,7 @@ namespace OrderManagement.Infrastructure
 {
     public static class Extensions
     {
-        public static IServiceCollection AddApplicationServices(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddInfrastructureServices(this IServiceCollection services, IConfiguration configuration)
         {
 
             services.AddSQLDB(configuration);

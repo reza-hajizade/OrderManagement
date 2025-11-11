@@ -9,8 +9,8 @@ namespace OrderManagement.Domain.Repositories
 {
     public interface IOrderWriteRepository
     {
-        Task AddAsync(Order order);
+        Task AddAsync(Order order,CancellationToken cancellationToken);
         Task<Order> GetOrderById(Guid id);
-        Task<Order> GetOrderByNameAsync(string name);
+        Task<Order> GetOrderByNameAsync(string name,CancellationToken cancellationToken);
     }
 }

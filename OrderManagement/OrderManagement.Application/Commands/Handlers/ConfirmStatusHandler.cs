@@ -29,7 +29,7 @@ namespace OrderManagement.Application.Commands.Handlers
            var order=await _orderWriteRepository.GetOrderById(request.Id);
             order.SetCurrentState();
             order.Confirm();
-           await _unitOfWork.SaveChangeAsync();
+           await _unitOfWork.SaveChangeAsync(cancellationToken);
         }
     }
 }

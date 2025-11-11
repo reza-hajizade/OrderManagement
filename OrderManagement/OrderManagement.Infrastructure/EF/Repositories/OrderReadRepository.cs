@@ -19,9 +19,9 @@ namespace OrderManagement.Infrastructure.EF.Repositories
         {
             _readDbContext = readDbContext;
         }
-        public async Task<OrderReadModel> GetOrderById(int id)
+        public async Task<OrderReadModel> GetOrderById(Guid id,CancellationToken cancellationToken)
         {
-            return await _readDbContext.orderReadModels.FirstOrDefaultAsync(p => p.Id == id);
+            return await _readDbContext.orderReadModels.FirstOrDefaultAsync(p => p.Id == id,cancellationToken);
            
         }
     }

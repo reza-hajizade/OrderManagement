@@ -8,18 +8,13 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddMediatR(cfg =>
 {
     cfg.RegisterServicesFromAssembly(typeof(CreateOrderHandler).Assembly);
-    cfg.RegisterServicesFromAssembly(typeof(ConfirmStatusHandler).Assembly);
-    cfg.RegisterServicesFromAssemblies(typeof(FailedStatusHandler).Assembly);
-    cfg.RegisterServicesFromAssemblies(typeof(GetOrderHandler).Assembly);
+
 });
 
 
 ConfigurationManager configuration = builder.Configuration;
 
-builder.Services.AddApplicationServices(configuration);
-
-builder.Services.AddControllers();
-
+builder.Services.AddInfrastructureServices(configuration);
 
 
 builder.Services.AddControllers()

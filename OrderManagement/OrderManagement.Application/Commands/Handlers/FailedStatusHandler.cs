@@ -29,7 +29,7 @@ namespace OrderManagement.Application.Commands.Handlers
             order.Failed();
           
 
-            await _unitOfWork.SaveChangeAsync();
+            await _unitOfWork.SaveChangeAsync(cancellationToken);
         }
     }
 }

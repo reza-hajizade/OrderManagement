@@ -11,7 +11,7 @@ namespace OrderManagement.Application.Commands.Handlers
 {
     public class CreateOrderHandler: IRequestHandler<CreateOrderCommand>
     {
-        private IOrderWriteRepository _orderWriteRepository;
+        private readonly IOrderWriteRepository _orderWriteRepository;
         private readonly IOrderCreatedEventPublisher _orderCreatedEventPublisher;
         private readonly IUnitOfWork _unitOfWork;
         public CreateOrderHandler(IOrderWriteRepository orderWriteRepository,
@@ -30,11 +30,10 @@ namespace OrderManagement.Application.Commands.Handlers
 
             var newOrder = Order.Create(command.Name,command.Quantity);  
 
-            await _orderWriteRepository.AddAsync(newOrder);
+            await _orderWriteRepository.AddAsync(newOrder,cancellationToken);
 
-
+            await _unitOfWork.SaveChangeAsync(cancellationToken);
             await _orderCreatedEventPublisher.PublishAsync(new OrderCreatedEvent(newOrder.Id,newOrder.Name,newOrder.Quantity,DateTime.UtcNow));
-            await _unitOfWork.SaveChangeAsync();
 
         }
     }

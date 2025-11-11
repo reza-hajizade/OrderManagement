@@ -8,6 +8,6 @@ using OrderManagement.Application.DTO;
 
 namespace OrderManagement.Application.Queries
 {
-    public sealed record GetOrderQuery(int Id):IRequest<GetOrderDto>;
+    public sealed record GetOrderQuery(Guid Id):IRequest<GetOrderDto>;
     
 }

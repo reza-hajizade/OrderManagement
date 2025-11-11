@@ -17,21 +17,21 @@ namespace OrderManagement.Infrastructure.EF.Repositories
         {
             _writeDbContext = writeDbContext;
         }
-        public async Task AddAsync(Order order)
+        public async Task AddAsync(Order order, CancellationToken cancellationToken)
         {
-           await _writeDbContext.Orders.AddAsync(order);
+           await _writeDbContext.Orders.AddAsync(order, cancellationToken);
         }
 
-        public async Task<Order> GetOrderById(Guid id)
+        public async Task<Order> GetOrderById(Guid id,CancellationToken cancellationToken)
         {
-            var result= await _writeDbContext.Orders.FirstOrDefaultAsync(p=>p.Id==id);
+            var result= await _writeDbContext.Orders.FirstOrDefaultAsync(p=>p.Id==id,cancellationToken);
             return result;
 
         }
 
-        public async Task<Order> GetOrderByNameAsync(string name)
+        public async Task<Order> GetOrderByNameAsync(string name,CancellationToken cancellationToken)
         {
-            var result= await _writeDbContext.Orders.FirstOrDefaultAsync(p=>p.Name==name);
+            var result= await _writeDbContext.Orders.FirstOrDefaultAsync(p=>p.Name==name, cancellationToken);
             return result;
         }
     }

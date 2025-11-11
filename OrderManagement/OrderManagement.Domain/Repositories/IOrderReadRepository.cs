@@ -4,6 +4,6 @@ namespace OrderManagement.Application.Repositories
 {
     public interface IOrderReadRepository
     {
-        Task<OrderReadModel> GetOrderById(int id);
+        Task<OrderReadModel> GetOrderById(Guid id);
     }
 }
